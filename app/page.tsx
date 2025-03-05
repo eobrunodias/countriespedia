@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { Footer, Header, Card, Grid, Spinner } from "./components";
 import { countriesApi } from "./services";
 import { Country } from "./types/country";
+import Link from "next/link";
 
 export default function Home() {
   const [countries, setCountries] = useState<Country[]>([]);
@@ -47,15 +48,16 @@ export default function Home() {
                 const { svg: flag } = flags ?? {};
 
                 return (
-                  <Card
-                    index={index}
-                    key={cca3}
-                    capital={capitalName}
-                    name={countryName}
-                    region={region}
-                    population={population}
-                    flag={flag}
-                  />
+                  <Link href={`/country/${cca3}`} key={cca3}>
+                    <Card
+                      index={index}
+                      capital={capitalName}
+                      name={countryName}
+                      region={region}
+                      population={population}
+                      flag={flag}
+                    />
+                  </Link>
                 );
               }
             )}
