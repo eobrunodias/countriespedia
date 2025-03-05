@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Footer, Header, Card, Grid, Spinner } from "./components";
+import { Card, Grid, Spinner } from "./components";
 import { countriesApi } from "./services";
 import { Country } from "./types/country";
 import Link from "next/link";
@@ -35,36 +35,32 @@ export default function Home() {
 
   return (
     <>
-      <Header />
-      <main className={`flex-1 items-center justify-center`}>
-        {loading ? (
-          <Spinner />
-        ) : (
-          <Grid>
-            {countries.map(
-              ({ name, cca3, capital, region, population, flags }, index) => {
-                const [capitalName] = capital ?? [];
-                const { common: countryName } = name ?? {};
-                const { svg: flag } = flags ?? {};
+      {loading ? (
+        <Spinner />
+      ) : (
+        <Grid>
+          {countries.map(
+            ({ name, cca3, capital, region, population, flags }, index) => {
+              const [capitalName] = capital ?? [];
+              const { common: countryName } = name ?? {};
+              const { svg: flag } = flags ?? {};
 
-                return (
-                  <Link href={`/country/${cca3}`} key={cca3}>
-                    <Card
-                      index={index}
-                      capital={capitalName}
-                      name={countryName}
-                      region={region}
-                      population={population}
-                      flag={flag}
-                    />
-                  </Link>
-                );
-              }
-            )}
-          </Grid>
-        )}
-      </main>
-      <Footer />
+              return (
+                <Link href={`/country/${cca3}`} key={cca3}>
+                  <Card
+                    index={index}
+                    capital={capitalName}
+                    name={countryName}
+                    region={region}
+                    population={population}
+                    flag={flag}
+                  />
+                </Link>
+              );
+            }
+          )}
+        </Grid>
+      )}
     </>
   );
 }
