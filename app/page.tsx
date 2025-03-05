@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Footer, Header, Card, Grid, Spinner } from "./components";
+import { countriesApi } from "./services";
 import { Country } from "./types/country";
 
 export default function Home() {
@@ -10,23 +11,26 @@ export default function Home() {
   const [error, setError] = useState<string | null>(null);
 
   async function fetchCountries() {
-    try {
-      const response = await fetch(
-        "https://restcountries.com/v3.1/all?fields=name,cca3,region,capital,population,flags"
-      );
-      const data: Country[] = await response.json();
-      setCountries(data);
-    } catch (err) {
+    const [response, error] = await countriesApi.getAll();
+    setLoading(false);
+
+    if (error) {
       setError(error);
-      console.error(err);
-    } finally {
-      setLoading(false);
+      return;
     }
+
+    if (!response) {
+      return;
+    }
+
+    setCountries(response);
   }
 
   useEffect(() => {
     fetchCountries();
   }, []);
+
+  if (error) return <div>{error}</div>;
 
   return (
     <>
