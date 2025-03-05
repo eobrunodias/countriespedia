@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Card, Grid, Spinner } from "./components";
+import { Card, Error, Grid, Loading } from "./components";
 import { countriesApi } from "./services";
 import { Country } from "./types/country";
 import Link from "next/link";
@@ -31,36 +31,33 @@ export default function Home() {
     fetchCountries();
   }, []);
 
-  if (error) return <div>{error}</div>;
+  if (loading) return <Loading />;
+  if (error) return <Error text={error} />;
 
   return (
     <>
-      {loading ? (
-        <Spinner />
-      ) : (
-        <Grid>
-          {countries.map(
-            ({ name, cca3, capital, region, population, flags }, index) => {
-              const [capitalName] = capital ?? [];
-              const { common: countryName } = name ?? {};
-              const { svg: flag } = flags ?? {};
+      <Grid>
+        {countries.map(
+          ({ name, cca3, capital, region, population, flags }, index) => {
+            const [capitalName] = capital ?? [];
+            const { common: countryName } = name ?? {};
+            const { svg: flag } = flags ?? {};
 
-              return (
-                <Link href={`/country/${cca3}`} key={cca3}>
-                  <Card
-                    index={index}
-                    capital={capitalName}
-                    name={countryName}
-                    region={region}
-                    population={population}
-                    flag={flag}
-                  />
-                </Link>
-              );
-            }
-          )}
-        </Grid>
-      )}
+            return (
+              <Link href={`/country/${cca3}`} key={cca3}>
+                <Card
+                  index={index}
+                  capital={capitalName}
+                  name={countryName}
+                  region={region}
+                  population={population}
+                  flag={flag}
+                />
+              </Link>
+            );
+          }
+        )}
+      </Grid>
     </>
   );
 }
