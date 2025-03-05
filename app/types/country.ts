@@ -7,22 +7,42 @@ export interface Country {
   flags: Flags;
 }
 
-export interface Name {
+export interface CountryDetailed extends Country {
+  tld: string[];
+  currencies: Currencies;
+  languages: Languages;
+  borders: string[];
+}
+
+export type Name = {
   common: string;
   official: string;
   nativeName: NativeName;
-}
+};
 
-export interface NativeName {
+export type NativeName = {
   eng: Eng;
-}
+};
 
-export interface Eng {
+export type Eng = {
   official: string;
   common: string;
-}
+};
 
-export interface Flags {
+export type Flags = {
   png: string;
   svg: string;
-}
+};
+
+export type Currencies = {
+  SHP: Shp;
+};
+
+export type Shp = {
+  name: string;
+  symbol: string;
+};
+
+export type Languages = {
+  eng: string;
+};

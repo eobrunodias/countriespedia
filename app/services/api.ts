@@ -1,4 +1,4 @@
-import { Country } from "../types/country";
+import { CountryDetailed } from "../types/country";
 
 class ApiClient {
   private readonly baseUrl: string;
@@ -7,7 +7,9 @@ class ApiClient {
     this.baseUrl = baseUrl;
   }
 
-  async get(endpoint: string): Promise<[Country[] | null, string | null]> {
+  async get(
+    endpoint: string
+  ): Promise<[CountryDetailed[] | null, string | null]> {
     try {
       const response = await fetch(`${this.baseUrl}${endpoint}`);
 
@@ -15,7 +17,7 @@ class ApiClient {
         return [null, `HTTP error! Status: ${response.status}`];
       }
 
-      const data: Country[] = await response.json();
+      const data: CountryDetailed[] = await response.json();
 
       return [data, null];
     } catch (error) {
