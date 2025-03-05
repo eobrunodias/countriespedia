@@ -29,12 +29,14 @@ class ApiClient {
   }
 }
 
-const countriesApiClient = new ApiClient("https://restcountries.com/v3.1");
+const baseUrl = "https://restcountries.com/v3.1";
+const baseEndpoint = "/all?fields=name,cca3,region,capital,population,flags";
+const countriesApiClient = new ApiClient(baseUrl);
 
 const countriesApi = {
   getAll: async () => {
     return await countriesApiClient.get(
-      "/all?fields=name,cca3,region,capital,population,flags"
+      `${baseEndpoint},languages,currencies,tld,borders`
     );
   },
 };
