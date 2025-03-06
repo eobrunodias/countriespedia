@@ -21,7 +21,7 @@ export default function Card({
     <div className="bg-white overflow-hidden h-full rounded-lg shadow-lg">
       <div className="w-full aspect-video">
         <Image
-          src={flag || "https://placehold.co/600x400"}
+          src={flag || `/flag-placeholder.svg`}
           priority={index < 12}
           className="w-full h-full object-cover"
           alt={`Flag of ${name}`}
