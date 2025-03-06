@@ -1,12 +1,13 @@
 "use client";
 
-import { Error, Loading } from "@/app/components";
-import { countriesApi } from "@/app/services";
-import { CountryDetailed } from "@/app/types/country";
-import Image from "next/image";
 import Link from "next/link";
-import { useParams } from "next/navigation";
+import Image from "next/image";
+import { formatNumber } from "@/app/utils";
 import { useEffect, useState } from "react";
+import { useParams } from "next/navigation";
+import { countriesApi } from "@/app/services";
+import { Error, Loading } from "@/app/components";
+import { CountryDetailed } from "@/app/types/country";
 
 type Params = {
   id: string;
@@ -117,7 +118,8 @@ export default function Country() {
               <span className="font-semibold">Region:</span> {region}
             </div>
             <div>
-              <span className="font-semibold">Population:</span> {population}
+              <span className="font-semibold">Population:</span>{" "}
+              {formatNumber(population)}
             </div>
             <div>
               <span className="font-semibold">Languages:</span> {languagesNames}
