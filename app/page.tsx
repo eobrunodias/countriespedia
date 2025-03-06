@@ -1,5 +1,7 @@
 "use client";
 
+import { ArrowUpIcon, ArrowDownIcon } from "@heroicons/react/24/solid";
+
 import { useEffect, useState } from "react";
 import { Card, Error, Grid, Loading } from "./components";
 import { countriesApi } from "./services";
@@ -10,6 +12,7 @@ export default function Home() {
   const [countries, setCountries] = useState<Country[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
 
   async function fetchCountries() {
     const [response, error] = await countriesApi.getAll();
@@ -36,13 +39,32 @@ export default function Home() {
     fetchCountries();
   }, []);
 
+  const sortedCountries = [...countries].sort((a, b) =>
+    sortOrder === "asc"
+      ? a.name.common.localeCompare(b.name.common, "en-US")
+      : b.name.common.localeCompare(a.name.common, "en-US")
+  );
+
+  function toggleSortOrder() {
+    setSortOrder((prev) => (prev === "asc" ? "desc" : "asc"));
+  }
+
   if (loading) return <Loading />;
   if (error) return <Error text={error} />;
 
   return (
     <>
+      <div className="flex items-center justify-end">
+        <button onClick={toggleSortOrder}>
+          {sortOrder === "desc" ? (
+            <ArrowUpIcon className="size-9 text-gray-300 m-6" />
+          ) : (
+            <ArrowDownIcon className="size-9 text-gray-300 m-6" />
+          )}
+        </button>
+      </div>
       <Grid>
-        {countries.map(
+        {sortedCountries.map(
           ({ name, cca3, capital, region, population, flags }, index) => {
             const [capitalName] = capital ?? [];
             const { common: countryName } = name ?? {};
