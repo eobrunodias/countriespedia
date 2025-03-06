@@ -24,6 +24,11 @@ export default function Home() {
       return;
     }
 
+    if (!Array.isArray(response)) {
+      setError("Format invalid response");
+      return;
+    }
+
     setCountries(response);
   }
 
