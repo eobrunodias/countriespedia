@@ -20,9 +20,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} antialiased vsc-initialized`}>
+      <body
+        className={`${inter.className} antialiased vsc-initialized md:px-16 lg:px-24`}
+      >
         <Header />
-        <main className={`flex-1 items-center justify-center`}>{children}</main>
+        <main className={`flex flex-col flex-1`}>{children}</main>
         <Footer />
       </body>
     </html>
