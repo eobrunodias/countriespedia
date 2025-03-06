@@ -1,9 +1,7 @@
 "use client";
 
-import { ArrowUpIcon, ArrowDownIcon } from "@heroicons/react/24/solid";
-
 import { useEffect, useState } from "react";
-import { Card, Error, Grid, Loading } from "./components";
+import { Card, Error, Grid, Loading, SortButton } from "./components";
 import { countriesApi } from "./services";
 import { Country } from "./types/country";
 import Link from "next/link";
@@ -54,15 +52,7 @@ export default function Home() {
 
   return (
     <>
-      <div className="flex items-center justify-end">
-        <button onClick={toggleSortOrder}>
-          {sortOrder === "desc" ? (
-            <ArrowUpIcon className="size-9 text-gray-300 m-6" />
-          ) : (
-            <ArrowDownIcon className="size-9 text-gray-300 m-6" />
-          )}
-        </button>
-      </div>
+      <SortButton sortOrder={sortOrder} toggleSortOrder={toggleSortOrder} />
       <Grid>
         {sortedCountries.map(
           ({ name, cca3, capital, region, population, flags }, index) => {
