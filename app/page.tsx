@@ -7,6 +7,7 @@ import { Country } from "./types/country";
 import Link from "next/link";
 import Search from "./components/Search";
 import Select from "./components/Select";
+import { formatNumber } from "./utils";
 
 export default function Home() {
   const [countries, setCountries] = useState<Country[]>([]);
@@ -97,7 +98,7 @@ export default function Home() {
                   capital={capitalName}
                   name={countryName}
                   region={region}
-                  population={population}
+                  population={formatNumber(population)}
                   flag={flag}
                 />
               </Link>

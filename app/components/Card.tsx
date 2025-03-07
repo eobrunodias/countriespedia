@@ -5,7 +5,7 @@ type CardProps = {
   name: string;
   capital: string;
   region: string;
-  population: number;
+  population: string;
   flag: string;
 };
 
