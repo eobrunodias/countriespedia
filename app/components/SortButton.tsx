@@ -10,7 +10,7 @@ export default function SortButton({
   toggleSortOrder,
 }: SortButtonProps) {
   return (
-    <div className="flex items-center justify-end">
+    <div className="flex items-center justify-start">
       <button onClick={toggleSortOrder}>
         {sortOrder === "desc" ? (
           <ArrowUpIcon className="size-9 text-gray-300 m-6" />
