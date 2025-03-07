@@ -70,7 +70,7 @@ export default function Home() {
 
   return (
     <>
-      <div className="flex items-start justify-between mb-6">
+      <div className="flex flex-col-reverse items-start justify-between mb-6 md:flex-row">
         <Search
           search={search}
           setSearch={setSearch}

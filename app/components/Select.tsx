@@ -67,7 +67,7 @@ const Select = ({ options, selected, setSelected }: SelectProps) => {
   };
 
   return (
-    <div className="w-full md:w-1/3 relative">
+    <div className="relative w-full mb-4 md:w-1/3 md:mb-0">
       <button
         type="button"
         aria-haspopup="listbox"
@@ -75,7 +75,7 @@ const Select = ({ options, selected, setSelected }: SelectProps) => {
         aria-labelledby="listbox"
         onClick={() => setIsOpen(!isOpen)}
         onKeyDown={handleButtonKeyDown}
-        className="w-full flex justify-between items-center bg-gray-600 px-4 py-2 text-left border rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none border-gray-300"
+        className="flex items-center justify-between w-full px-4 py-2 text-left bg-gray-600 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"
       >
         {selected}
         <ChevronDownIcon
@@ -91,7 +91,7 @@ const Select = ({ options, selected, setSelected }: SelectProps) => {
           tabIndex={0}
           aria-activedescendant={`option-${focusedIndex}`}
           onKeyDown={handleListKeyDown}
-          className="absolute z-10 w-full bg-gray-700 mt-2 border rounded-lg shadow-md border-gray-300 overflow-hidden focus:ring-2 focus:ring-blue-500 focus:outline-none"
+          className="absolute z-10 w-full mt-2 overflow-hidden bg-gray-700 border border-gray-300 rounded-lg shadow-md focus:ring-2 focus:ring-blue-500 focus:outline-none"
         >
           {options.map((option, index) => (
             <li

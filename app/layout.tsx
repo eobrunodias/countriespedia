@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.className} antialiased vsc-initialized md:px-16 lg:px-24`}
+        className={`${inter.className} antialiased vsc-initialized px-10 md:px-16 lg:px-24`}
       >
         <Header />
         <main className={`flex flex-col flex-1`}>{children}</main>

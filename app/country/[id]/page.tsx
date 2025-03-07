@@ -86,7 +86,7 @@ export default function Country() {
     <>
       <div className="mb-8">
         <Link href={`/`}>
-          <button className="bg-gray-600 hover:bg-gray-700 font-semibold py-2 px-4 rounded">
+          <button className="px-4 py-2 font-semibold bg-gray-600 rounded hover:bg-gray-700">
             Back
           </button>
         </Link>
@@ -96,14 +96,14 @@ export default function Country() {
           <Image
             src={`${flag || "/flag-placeholder.svg"}`}
             alt={`Flag of `}
-            className="max-h-80 object-cover rounded-lg"
+            className="object-cover rounded-lg max-h-80"
             priority
             width={600}
             height={400}
           />
         </div>
         <div className="flex flex-col justify-center p-6 text-sm">
-          <h2 className="text-xl font-semibold mb-4">
+          <h2 className="mb-4 text-xl font-semibold">
             {countryName} ({id})
           </h2>
           <div className="space-y-2">
