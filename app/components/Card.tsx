@@ -18,19 +18,19 @@ export default function Card({
   flag,
 }: CardProps) {
   return (
-    <div className="bg-white overflow-hidden h-full rounded-lg shadow-lg">
+    <div className="h-full overflow-hidden transition-all duration-300 ease-in-out transform bg-white rounded-lg shadow-lg hover:shadow-xl hover:-translate-y-1">
       <div className="w-full aspect-video">
         <Image
           src={flag || `/flag-placeholder.svg`}
           priority={index < 12}
-          className="w-full h-full object-cover"
+          className="object-cover w-full h-full"
           alt={`Flag of ${name}`}
           width={500}
           height={300}
         />
       </div>
       <div className="p-6 text-sm text-gray-600">
-        <h2 className="text-xl font-semibold mb-4">{name}</h2>
+        <h2 className="mb-4 text-xl font-semibold">{name}</h2>
         <div className="space-y-2">
           <div className="flex items-center gap-1">
             <span className="font-semibold">Capital:</span>

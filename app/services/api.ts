@@ -1,5 +1,7 @@
 import { CountryDetailed } from "../types/country";
 
+const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+
 class ApiClient {
   private readonly baseUrl: string;
 
@@ -35,11 +37,10 @@ class ApiClient {
   }
 }
 
-const baseUrl = "https://restcountries.com/v3.1";
 const baseQueryAll = "/all?fields=";
 const baseFields = "name,cca3,region,capital,population,flags";
 
-const countriesApiClient = new ApiClient(baseUrl);
+const countriesApiClient = new ApiClient(apiUrl!);
 
 const countriesApi = {
   getAll: () => countriesApiClient.get(`${baseQueryAll}${baseFields}`),
